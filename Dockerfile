@@ -12,8 +12,8 @@ RUN \
 COPY entry-point.sh /entry-point.sh
 
 RUN \
-    export HUB_VERSION=1.0 && \
-    export HUB_BUILD=809 && \
+    export HUB_VERSION=2.5 && \
+    export HUB_BUILD=359 && \
     mkdir -p /usr/local/hub && \
     mkdir -p /var/lib/hub && \
     cd /usr/local/hub && \
@@ -21,7 +21,8 @@ RUN \
     curl -L https://download.jetbrains.com/hub/${HUB_VERSION}/hub-ring-bundle-${HUB_VERSION}.${HUB_BUILD}.zip \
         > hub-ring-bundle.zip && \
     unzip hub-ring-bundle.zip && \
-    rm -f hub-ring-bundle.zip && \
+    cp -r hub-*/* . && \
+    rm -fr hub* && \
     chown -R hub:hub /usr/local/hub
 
 USER hub
